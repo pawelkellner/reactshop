@@ -1,0 +1,38 @@
+.filterBar{
+    position: fixed;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    height: min(10rem, 20vh);
+    background: rgba(255, 255, 255, 0.2);
+    border: 0.2rem solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.filterBarWrapper{
+    width: 60vw;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filterBar__inputWrapper{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 3rem;
+    color: #e0e0e0;
+}
+
+.filterBar__inputWrapper input{
+    width: 3rem;
+    height: 3rem;
+}
+
+.filterBar__inputWrapper label{
+
+}
