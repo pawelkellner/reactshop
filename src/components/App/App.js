@@ -8,29 +8,33 @@ import {useState, useEffect} from "react"
 const App = () =>{
 
     const [drinksState, setDrinksState] = useState([])
-
+    const [defaultDrinks, setDefaultDrinks] = useState([])
+    
     useEffect(() => {
-        setDrinksState(items)
+        let i = 0
+        let types = ["beer", "soda", "food"] 
+        
+        const galeryCardsToBeRendered = items?.map((drink, index) =>{
+            let temp = <GaleryCard type={types[i]} drinks={drink} key={index}/>
+            i = i + 1
+            return temp
+        })
+        console.log(galeryCardsToBeRendered)
+        setDrinksState(galeryCardsToBeRendered)
+        setDefaultDrinks(galeryCardsToBeRendered)
     }, [])
 
     const onFilter = (filterValue) =>{
-        console.log(filterValue)
+        let filterItems = defaultDrinks.filter((item) => {return item.props.type === filterValue} )
+        
+        setDrinksState(filterItems)
     }
 
-    let i = 0
-
-    let types = ["beer", "soda", "food"] 
-
-    const galeryCardsToBeRendered = drinksState?.map((drink, index) =>{
-        let temp = <GaleryCard type={types[i]} drinks={drink} key={index}/>
-        i = i + 1
-        return temp
-    })
-
+    console.log(drinksState)
     return(
         <>
             <FilterBar onFilter={onFilter}/>
-            {galeryCardsToBeRendered}
+            {drinksState}
         </>
     )
 }
