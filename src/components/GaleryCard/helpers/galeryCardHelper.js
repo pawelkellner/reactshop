@@ -7,16 +7,16 @@ const getToBeRenderedFigures = (drinks) =>{
             classToBeAdded = "galeryCard__figure galeryCard__figure--big"
             break;
         case 1:
-            classToBeAdded += "galeryCard__figure galeryCard__figure--middle"
+            classToBeAdded = "galeryCard__figure galeryCard__figure--middle"
             break;
         case 2:
-            classToBeAdded += "galeryCard__figure galeryCard__figure--middle"
+            classToBeAdded = "galeryCard__figure galeryCard__figure--middle"
             break;
         default:
             classToBeAdded = "galeryCard__figure galeryCard__figure--small"
     }
     return (
-        <figure className={classToBeAdded}>
+        <figure key={index} className={classToBeAdded}>
                 <img className="galeryCard__img" src={beer.image} alt={beer.alt}/>
         </figure>
     )

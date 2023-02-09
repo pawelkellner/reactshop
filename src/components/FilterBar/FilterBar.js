@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./FilterBar.css";
 
-const FilterBar = ({onFilter}) =>{
+const FilterBar = ({onFilter, cart}) =>{
     const [labels, setLabels] = useState([]);
 
     useEffect(() =>{
@@ -23,10 +23,9 @@ const FilterBar = ({onFilter}) =>{
         setLabels(toBeRenderedLabels)
     },[])
 
-    console.log(labels)
-    const toBeRenderedLabels = labels?.map((label) =>{
+    const toBeRenderedLabels = labels?.map((label, index) =>{
         return(
-            <div className="filterBar__inputWrapper">
+            <div key={index} className="filterBar__inputWrapper">
                     <input onChange={() => filterDrink(label.name)} id={label.name} className="filterBar__checkbox" type="checkbox" name="" id="" checked={label.checked}/>
                     <label htmlFor={label.name}>{label.name}</label>
                 </div>
@@ -49,11 +48,16 @@ const FilterBar = ({onFilter}) =>{
     }
 
     return(
+        <>
         <section className="filterBar">
             <div className="filterBarWrapper">
                 {toBeRenderedLabels}
             </div>
+            <article className="counter">
+                <p>{cart.length}</p>
+            </article>
         </section>
+        </>
     )
 }
 

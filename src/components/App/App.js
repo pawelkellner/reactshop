@@ -1,40 +1,33 @@
-import GaleryCard from "../GaleryCard/GaleryCard";
+
+import Homepage from "../../pages/Homepage";
+import Productpage from "../../pages/Productpage";
 import "./App.css";
 
-import items from "../../data/items";
-import FilterBar from "../FilterBar/FilterBar";
-import {useState, useEffect} from "react"
+import { useState } from "react"
+
+import {Routes, Route} from "react-router-dom"
 
 const App = () =>{
+    const [productList, setProductList] = useState([])
+    const [productsCart, setProductsCart] = useState([])
 
-    const [drinksState, setDrinksState] = useState([])
-    const [defaultDrinks, setDefaultDrinks] = useState([])
-    
-    useEffect(() => {
-        let i = 0
-        let types = ["beer", "soda", "food"] 
-        
-        const galeryCardsToBeRendered = items?.map((drink, index) =>{
-            let temp = <GaleryCard type={types[i]} drinks={drink} key={index}/>
-            i = i + 1
-            return temp
-        })
-        console.log(galeryCardsToBeRendered)
-        setDrinksState(galeryCardsToBeRendered)
-        setDefaultDrinks(galeryCardsToBeRendered)
-    }, [])
-
-    const onFilter = (filterValue) =>{
-        let filterItems = defaultDrinks.filter((item) => {return item.props.type === filterValue} )
-        
-        setDrinksState(filterItems)
+    const cardClicked = (type) =>{
+        setProductList(type)
     }
 
-    console.log(drinksState)
+    const addToCart = (item) =>{
+        let oldState = [...productsCart];
+        oldState.push(item)
+        let newState = oldState
+        setProductsCart(newState)
+    }
+
     return(
         <>
-            <FilterBar onFilter={onFilter}/>
-            {drinksState}
+        <Routes>
+            <Route path="/" element={<Homepage cart={productsCart} cardClicked={cardClicked}/>}></Route>
+            <Route path="/product/:type" element={<Productpage cart={productsCart} addtoCart={addToCart} products={productList}/>}></Route>
+        </Routes>
         </>
     )
 }

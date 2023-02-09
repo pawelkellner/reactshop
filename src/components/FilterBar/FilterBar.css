@@ -11,6 +11,21 @@
     backdrop-filter: blur(5px);
 }
 
+.counter{
+    width: 20rem;
+    height: 20rem;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5rem solid black;
+    border-radius: 50%;
+    transform: translateY(2rem) translateX(calc(100vw - 200%));
+}
+
 .filterBarWrapper{
     width: 60vw;
     height: 100%;
@@ -35,4 +50,15 @@
 
 .filterBar__inputWrapper label{
 
+}
+
+@media screen and (max-width: 550px){
+    .filterBar{
+        height: max-content;
+        padding: 1rem;
+    }
+    .filterBarWrapper{
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
